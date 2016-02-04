@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app="carpoolApp">
+    <head>
+        <title>Car Pooling</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="car pooling" />
+
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <!-- js -->
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <!-- //js -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Archivo+Narrow:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+        
+        <script src="js/angular.js"></script>
+        <script src="js/angular-route.js"></script>
+        <script src="js/carpool/carpool-app.js"></script>
+    </head>
+
+    <body>
+        <!-- banner -->
+        <div class="banner-black">
+            <div class="container">
+                <!-- header -->
+                <div class="header">
+                    <div class="logo">
+                        <a href="index.html">Car Pooling</a>
+                    </div>
+                    <div class="top-nav">
+                        <span class="menu"><img src="images/menu.png" alt=" " /></span>
+                        <ul class="nav">
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">How It Works</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                        <!-- script-for-menu -->
+                        <script>
+                            $( "span.menu" ).click(function() {
+                              $( "ul.nav" ).slideToggle( 300, function() {
+                              // Animation complete.
+                               });
+                              });
+                        </script>
+                        <!-- /script-for-menu -->
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </div>
+                <!-- //header -->
+                <div class="banner-info">
+                    <form>
+                        <input type="text" placeholder="Enter Location" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Mail...';}" required="">
+                        <input type="submit" placeholder="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- //banner -->
+        <!-- welcome -->
+        <div class="welcome">
+            <div class="container">
+                <h3>Post Ad</h3>
+                <p class="et">Post your ad!</p>
+                <div class="register" ng-controller="PoolReqCtrl">
+                    <div style="color:red" id="errMsg"></div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <form>
+                                <div class="row">
+                                    <div class="col-xs-6"><input type="radio" ng-model="cpReq.type" value="required" checked class="mb-20" > Carpool Required</div>
+                                    <div class="col-xs-6"><input type="radio" ng-model="cpReq.type" value="offered"> Carpool Offered</div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-xs-12" ng-show="cpReq.type == 'required'">
+                                        <input class="text-input" type="text" ng-model="cpReq.noOfSeatsRequired" placeholder="No Of Seats Required">
+                                    </div>
+                                    <div class="col-xs-12" ng-show="cpReq.type == 'offered'">
+                                        <input class="text-input" type="text" ng-model="cpReq.noOfSeatsOffered" placeholder="No Of Seats Offered">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.frmAddr.addressLine1" placeholder="From Address Line1">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.frmAddr.addressLine2" placeholder="From Address Line2">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.frmAddr.city" placeholder="From City">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.frmAddr.state" placeholder="From State">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.frmAddr.zip" placeholder="From Zip">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.toAddr.addressLine1" placeholder="To Address Line1">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.toAddr.addressLine2" placeholder="To Address Line2">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.toAddr.city" placeholder="To City">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.toAddr.state" placeholder="To State">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <input class="text-input" type="text" ng-model="cpReq.toAddr.zip" placeholder="To Zip">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6"><input type="radio" ng-model="cpReq.pref" value="smoker" checked class="mb-20"> Smoker</div>
+                                    <div class="col-xs-6"><input type="radio" ng-model="cpReq.pref" value="nonsmoker"> Non Smoker</div>
+                                </div>
+                                <div class="row"><div class="col-xs-12"><textarea class="textarea">Description...</textarea></div></div>
+                                <div class="row">
+                                    <div class="col-xs-6"><input type="submit" placeholder="Post" class="btn btn-primary" ng-click="postCarpoolReq()"></div>
+                                    <div class="col-xs-6"><input type="submit" placeholder="Cancel" class="btn btn-primary"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //welcome -->
+        <!-- footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="footer-grds">
+                    <div class="footer-grds-left">
+                        <p>Copyright © 2015 Car Pooling. All Rights Reserved | Design by <a href="http://kantheti.com/">Kantheti</a></p>
+                    </div>
+                    <div class="footer-grds-right">
+                        <ul>
+                            <li><a href="#" class="fa"></a></li>
+                            <li><a href="#" class="fb"></a></li>
+                            <li><a href="#" class="fc"></a></li>
+                            <li><a href="#" class="fd"></a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //footer -->
+        <!-- for bootstrap working -->
+        <script src="js/bootstrap.js">
+        </script>
+        <!-- //for bootstrap working -->
+    </body>
+</html>

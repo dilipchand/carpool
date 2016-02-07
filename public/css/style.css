@@ -216,7 +216,7 @@ span.menu{
 	border: 1px solid #b8b7b7;
 	padding:13px 10px;
 }
-.banner-info input[type="submit"]{
+.banner-info input[type="submit"], .banner-info button{
 	/*background:#017c8e;*/
 	font-family: 'Archivo Narrow', sans-serif;
 	color:#fff;

@@ -9,10 +9,12 @@
                 <form>
                     <div class="row">
                         <div class="col-xs-12 col-sm-8 mt-10">
-                            <input type="text" value="Enter Location" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Mail...';}" required="">
+                            <google-places location=location></google-places>
+                            <!--<input type="text" value="Enter Location" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Mail...';}" required="">-->
                         </div>
                         <div class="col-xs-12 col-sm-4">
-                            <input type="submit" value="Search" class="btn btn-block btn-primary">
+                            <button ng-click="doSearch()" class="btn btn-block btn-primary">Search</button>
+                            <!--<input type="submit" value="Search" class="btn btn-block btn-primary">-->
                         </div>
                     </div>
                 </form>

@@ -8,7 +8,7 @@
                     <h4 class="text-center">New User</h4>
                     <h3 class="text-center text-primary">REGISTER HERE</h3>
                     <!--<p class="et">Register - Car Pooling is an all new way to commute. Search and book a shared ride to your office with a verified member of the community at  5 /KM in a single tap!</p>-->
-                    <div class="register" ng-controller="MemeberInfoCtrl">
+
 
                         <div style="color:red" id="errMsg"></div>
                         <div class="row">
@@ -16,32 +16,32 @@
                                 <form class="forms" name="registrationForm">
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input"  name="fname" type="text" placeholder="First Name" ng-model="memberInfo.firstName" required>
+                                            <input class="text-input"  name="fname" type="text" placeholder="First Name" ng-model="memberInfo.firstname" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="text" placeholder="Last Name" ng-model="memberInfo.lastName" required>
+                                            <input class="text-input" type="text" placeholder="Last Name" ng-model="memberInfo.lastName" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="email" placeholder="Email" ng-model="memberInfo.email" required>
+                                            <input class="text-input" type="email" placeholder="Email" ng-model="memberInfo.email" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="text" placeholder="Telephone" ng-model="memberInfo.contactNumber" required>
+                                            <input class="text-input" type="text" placeholder="Telephone" ng-model="memberInfo.contactNumber" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="password" placeholder="Password" ng-model="memberInfo.password" required>
+                                            <input class="text-input" type="password" placeholder="Password" ng-model="memberInfo.password" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="password" placeholder="Confirm assword" ng-model="memberInfo.confirmPassword" required>
+                                            <input class="text-input" type="password" placeholder="Confirm assword" ng-model="memberInfo.confirmPassword" >
                                         </div>
                                     </div>
                                     <div class="row">
@@ -52,38 +52,45 @@
                                             <span>I agree to <a href="#">Terms of Service</a>  and <a href="#">Privacy Policy</a></span>
                                         </div>
                                     </div>
-                                    <div class="row"><div class="col-xs-12"><input type="submit" value="Register" class="btn btn-primary" ng-click="postMemberInfo()"></div></div>
-                                    <p class="text-block">or</p>
                                     <div class="row">
                                         <div class="col-xs-12">
+                                        <input  type="submit" value="Register" class="btn btn-primary" ng-click="postMemberInfo()" >
+                                            <!--ng-disabled="registrationForm.$invalid"-->
+                                        </div>
+                                    </div>
+                                    <p class="text-block">or</p>
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <a class="btn btn-block btn-social btn-sm btn-google">
+                                                <i class="fa fa-google"></i>Sign In
+                                            </a>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <a class="btn btn-block btn-social btn-sm btn-facebook">
+                                                <i class="fa fa-facebook"></i>Sign In
+                                            </a>
+                                            <!--<span class="fa fa-google-plus"></span>
                                             <input type="submit" value="Google Plus" class="btn btn-primary btn-danger">
-                                            <input type="submit" value="Facebook" class="btn btn-primary btn-fb">
-                                        </div></div>
+                                            <span class="fa fa-facebook-plus"></span>
+                                            <input type="submit" value="Facebook" class="btn btn-primary btn-fb">-->
+                                        </div>
+                                        </div>
                                 </form>
                             </div>
                         </div>
 
-                    </div>
+
                 </div>
             </div>
 
 
         </div>
     </div>
-
+    
     <!-- //Registration -->
     <!-- Sample Modal Code -->
-            <!--<modal title="Login form" visible="showModal">
-            <form role="form">
-              <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" />
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password" />
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-         </modal>-->
+  <modal title="Registration Sussess!" visible="modalSuccessReg">
+        <p>Thanks you <strong>{{memberInfo.firstname}} {{memberInfo.lastName}}</strong> for registering with us!</p>
+        <p>To verify please click on the link sent to <strong>{{memberInfo.email}}</strong> for confirmation</p>
+  </modal>
     <!-- Sample Modal Code -->

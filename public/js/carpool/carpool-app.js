@@ -1,5 +1,5 @@
 
-var carpoolApp = angular.module('carpoolApp', ['ngRoute']);
+var carpoolApp = angular.module('carpoolApp', ['ngRoute', 'Otd']);
 
 carpoolApp.config(function ($routeProvider) {
     $routeProvider
@@ -28,17 +28,20 @@ carpoolApp.config(function ($routeProvider) {
                     controller: 'PoolReqCtrl',
                     templateUrl: 'carpoolreq.html'
                 })
+                .when('/searchResults',
+                {
+                    controller: 'searchResultsCtrl',
+                    templateUrl: 'searchResults.html'
+                })
                 .otherwise({ redirectTo: '/' })
 });
 
 carpoolApp.controller('MemeberInfoCtrl', function($scope, $http) {
 
-
-
-	//$scope.memberInfo = {firstName:'Dilip'};
+	$scope.memberInfo = {firstName:'Dilip'};
 
 	$scope.postMemberInfo = function() {
-        $scope.showModal = false;
+        $scope.modalSuccessReg = false;
 		console.log($scope.memberInfo);
 		$http({
 			method: 'POST',
@@ -48,10 +51,10 @@ carpoolApp.controller('MemeberInfoCtrl', function($scope, $http) {
 		}).then(function success(response) {
     
     
-        $scope.showModal = !$scope.showModal;
+        $scope.modalSuccessReg = !$scope.modalSuccessReg;
     
 			console.log(response);
-            //alert('ding dong')
+            alert('ding dong')
 		}, function error(response) {
 
 		});
@@ -80,7 +83,19 @@ carpoolApp.controller('PoolReqCtrl', function($scope, $http) {
 });
 
 
+carpoolApp.controller('searchResultsCtrl', function($scope) {
+    $scope.members = [
+    { "firstname": "Sharon", "lastName": "Cole", "from": "Newyork", "to":"Chicago", "email": "sharon@gmail.com", "contactNumber": "9632587412", "weeklyCommute":["Mon", "Wed", "Tue"]},
+    { "firstname": "Dilip", "lastName": "Cole", "from": "Washington", "to":"Sanfransisco", "email": "chanddilip@yahoo.com", "contactNumber": "987456321", "weeklyCommute":["Wed", "Tue"]},
+    { "firstname": "Swaroop", "lastName": "Cole", "from": "Machilipatnam", "to":"Gudivada", "email": "kanteti@rediffmail.com", "contactNumber": "9885485757", "weeklyCommute":["Mon", "Wed", "Tue"]},
+    { "firstname": "Dinesh", "lastName": "Cole", "from": "Madras", "to":"Banglore", "email": "dineshchand@yahoo.com", "contactNumber": "987456125", "weeklyCommute":["Tue", "Wed", "Fri"]}
+]
 
+    //$http.get("/js/carpool/searchResults.json").then(function(response) {
+    //    $scope.searchResults = response.data;
+    //});
+
+});
 
 
 

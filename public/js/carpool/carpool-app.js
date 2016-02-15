@@ -36,30 +36,23 @@ carpoolApp.config(function ($routeProvider) {
                 .otherwise({ redirectTo: '/' })
 });
 
-carpoolApp.controller('MemeberInfoCtrl', function($scope, $http) {
-
-	$scope.memberInfo = {firstName:'Dilip'};
-
-	$scope.postMemberInfo = function() {
-        $scope.modalSuccessReg = false;
-		console.log($scope.memberInfo);
+carpoolApp.controller('MemeberInfoCtrl', function($scope, $http, $location, $rootScope) {
+  $scope.memberInfo = {};
+	$scope.registerUser = function() {
+    $scope.modalSuccessReg = false;
 		$http({
 			method: 'POST',
 			url: '/registerUser',
 			headers: {'Content-Type': 'application/json'},
 			data: $scope.memberInfo
 		}).then(function success(response) {
-    
-    
+        $location.path("/");
         $scope.modalSuccessReg = !$scope.modalSuccessReg;
-    
-			console.log(response);
-            alert('ding dong')
+        $rootScope.modalSuccessReg = true;
 		}, function error(response) {
 
 		});
 	};
-
 });
 
 carpoolApp.controller('PoolReqCtrl', function($scope, $http) {

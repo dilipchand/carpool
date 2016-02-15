@@ -14,7 +14,6 @@ MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
 /* GET users listing. */
 router.get('/registerUser', function(req, res, next) {
   res.send('respond with a resource');
-  req.
 });
 
 module.exports = router;

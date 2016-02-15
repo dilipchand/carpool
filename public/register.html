@@ -13,49 +13,54 @@
                         <div style="color:red" id="errMsg"></div>
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-1">
-                                <form class="forms" name="registrationForm">
+                                <form class="forms" name="registrationForm" novalidate>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input"  name="fname" type="text" placeholder="First Name" ng-model="memberInfo.firstname" >
+                                            <input class="text-input" name="firstname" type="text" placeholder="First Name" ng-model="memberInfo.firstname" required>
+                                            <p ng-show="registrationForm.firstname.$invalid && !registrationForm.firstname.$pristine" class="help-block">Your first name is required.</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="text" placeholder="Last Name" ng-model="memberInfo.lastName" >
+                                            <input class="text-input" name="lastname" type="text" placeholder="Last Name" ng-model="memberInfo.lastname">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="email" placeholder="Email" ng-model="memberInfo.email" >
+                                            <input class="text-input" type="email" placeholder="Email" ng-model="memberInfo.email" name="email" required>
+                                            <p ng-show="registrationForm.email.$error.required && !registrationForm.email.$pristine" class="help-block">Your email is required.</p>
+                                            <p ng-show="registrationForm.email.$error.email && !registrationForm.email.$pristine && registrationForm.email.$touched" class="help-block">Enter a valid email.</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="text" placeholder="Telephone" ng-model="memberInfo.contactNumber" >
+                                            <input class="text-input" type="text" placeholder="Contact Number" ng-model="memberInfo.contactNumber" name="contactNumber">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="password" placeholder="Password" ng-model="memberInfo.password" >
+                                            <input class="text-input" name="password" type="password" placeholder="Password" ng-model="memberInfo.password" required>
+                                            <p ng-show="registrationForm.password.$error.required && !registrationForm.password.$pristine" class="help-block">Password is required.</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input class="text-input" type="password" placeholder="Confirm assword" ng-model="memberInfo.confirmPassword" >
+                                            <input class="text-input" name="confirmPassword" type="password" placeholder="Confirm Password" ng-model="memberInfo.confirmPassword" required>
+                                            <p ng-show="registrationForm.password.$valid && registrationForm.confirmPassword.$error.required && !registrationForm.confirmPassword.$pristine" class="help-block">Confirm your password.</p>
+                                            <p ng-show="registrationForm.password.$viewValue != registrationForm.confirmPassword.$viewValue && !registrationForm.confirmPassword.$pristine && registrationForm.confirmPassword.$touched" class="help-block">Confirm password not matching.</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 mb-20">
                                             <span>
-                                                <input type="checkbox">
+                                                <input type="checkbox" name="termsAndPolicy" ng-model="memberInfo.termsAndPolicy" required>
                                             </span>
                                             <span>I agree to <a href="#">Terms of Service</a>  and <a href="#">Privacy Policy</a></span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                        <input  type="submit" value="Register" class="btn btn-primary" ng-click="postMemberInfo()" >
-                                            <!--ng-disabled="registrationForm.$invalid"-->
+                                            <input  type="submit" value="Register" class="btn btn-primary" ng-click="registerUser()" ng-disabled="registrationForm.$invalid || registrationForm.password.$viewValue != registrationForm.confirmPassword.$viewValue">
                                         </div>
                                     </div>
                                     <p class="text-block">or</p>
@@ -74,7 +79,7 @@
                                             <span class="fa fa-facebook-plus"></span>
                                             <input type="submit" value="Facebook" class="btn btn-primary btn-fb">-->
                                         </div>
-                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -87,10 +92,3 @@
         </div>
     </div>
     
-    <!-- //Registration -->
-    <!-- Sample Modal Code -->
-  <modal title="Registration Sussess!" visible="modalSuccessReg">
-        <p>Thanks you <strong>{{memberInfo.firstname}} {{memberInfo.lastName}}</strong> for registering with us!</p>
-        <p>To verify please click on the link sent to <strong>{{memberInfo.email}}</strong> for confirmation</p>
-  </modal>
-    <!-- Sample Modal Code -->
